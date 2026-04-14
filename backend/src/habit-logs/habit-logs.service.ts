@@ -37,6 +37,13 @@ export class HabitLogsService {
     return log;
   }
 
+  update(id: number, dto: { completed?: boolean; note?: string }): HabitLog {
+  const log = this.logs.find(l => l.id === id);
+  if (!log) throw new NotFoundException(`Лог #${id} не знайдено`);
+  Object.assign(log, dto);
+  return log;
+}
+
   // Видалити запис
   remove(id: number): { message: string } {
     const index = this.logs.findIndex(l => l.id === id);
