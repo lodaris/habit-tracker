@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
+
 
 // Описуємо як виглядає об'єкт «звичка»
 export interface Habit {
@@ -29,14 +31,14 @@ export class HabitsService {
   }
 
     // Оновлюємо тільки ті поля які передали
-  update(id: number, dto: UpdateHabitDto): Habit {
-    const habit = this.findOne(id);
-    Object.assign(habit, dto);
-    return habit;
-  }
+    update(id: number, dto: UpdateHabitDto): Habit {
+      const habit = this.findOne(id);
+      Object.assign(habit, dto);
+      return habit;
+    }
 
   // Створити нову звичку
-  create(dto: { name: string; description?: string; category?: string }): Habit {
+  create(dto: CreateHabitDto): Habit {
     const habit: Habit = {
       id: this.nextId++,
       name: dto.name,

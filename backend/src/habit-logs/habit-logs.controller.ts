@@ -1,5 +1,7 @@
 import { Controller, Get, Post, Delete, Patch, Param, Body } from '@nestjs/common';
 import { HabitLogsService } from './habit-logs.service';
+import { CreateHabitLogDto } from './dto/create-habit-log.dto';
+import { UpdateHabitLogDto } from './dto/update-habit-log.dto';
 
 @Controller('habit-logs')
 export class HabitLogsController {
@@ -16,13 +18,13 @@ export class HabitLogsController {
   }
 
   @Post() // POST /habit-logs
-  create(@Body() body: { habitId: number; date?: string; completed?: boolean; note?: string }) {
-    return this.habitLogsService.create(body);
+  create(@Body() dto: CreateHabitLogDto) {
+    return this.habitLogsService.create(dto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: { completed?: boolean; note?: string }) {
-    return this.habitLogsService.update(+id, body);
+  update(@Param('id') id: string, @Body() dto: UpdateHabitLogDto) {
+    return this.habitLogsService.update(+id, dto);
   }
 
   @Delete(':id') // DELETE /habit-logs/1

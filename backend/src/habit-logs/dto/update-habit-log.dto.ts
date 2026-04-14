@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateHabitLogDto } from './create-habit-log.dto';
+import { IsOptional, IsBoolean, IsString } from 'class-validator';
 
-export class UpdateHabitLogDto extends PartialType(CreateHabitLogDto) {}
+export class UpdateHabitLogDto {
+  @IsOptional()
+  @IsBoolean()
+  completed?: boolean;
+
+  @IsOptional()
+  @IsString()
+  note?: string;
+}
