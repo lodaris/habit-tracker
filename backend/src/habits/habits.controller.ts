@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import { UpdateHabitDto } from './dto/update-habit.dto';
+import { Controller, Get, Post, Delete, Patch, Param, Body } from '@nestjs/common';
 import { HabitsService } from './habits.service';
 
 @Controller('habits') // всі маршрути починаються з /habits
@@ -19,6 +20,11 @@ export class HabitsController {
   create(@Body() body: { name: string; description?: string; category?: string }) {
     return this.habitsService.create(body);
   }
+
+  @Patch(':id') // PATCH /habits/1
+update(@Param('id') id: string, @Body() dto: UpdateHabitDto) {
+  return this.habitsService.update(+id, dto);
+}
 
   @Delete(':id') // DELETE /habits/1
   remove(@Param('id') id: string) {

@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { UpdateHabitDto } from './dto/update-habit.dto';
 
 // Описуємо як виглядає об'єкт «звичка»
 export interface Habit {
@@ -24,6 +25,13 @@ export class HabitsService {
   findOne(id: number): Habit {
     const habit = this.habits.find(h => h.id === id);
     if (!habit) throw new NotFoundException(`Звичку #${id} не знайдено`);
+    return habit;
+  }
+
+    // Оновлюємо тільки ті поля які передали
+  update(id: number, dto: UpdateHabitDto): Habit {
+    const habit = this.findOne(id);
+    Object.assign(habit, dto);
     return habit;
   }
 
