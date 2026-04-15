@@ -1,32 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHabitLogDto } from './dto/create-habit-log.dto';
 import { UpdateHabitLogDto } from './dto/update-habit-log.dto';
-
-// Дефолтний запис виконання звички
-export interface HabitLog {
-  id: number;
-  habitId: number;   // до якої звички належить цей запис
-  date: string;
-  completed: boolean;
-  note: string;
-}
+import { HabitLog } from '../types';
 
 @Injectable()
 export class HabitLogsService {
   private logs: HabitLog[] = [];
   private nextId = 1;
 
-  // Повернути всі логи
   findAll(): HabitLog[] {
     return this.logs;
   }
 
-  // Повернути логи конкретної звички
   findByHabit(habitId: number): HabitLog[] {
     return this.logs.filter(l => l.habitId === habitId);
   }
 
-  // Додати запис виконання
   create(dto: CreateHabitLogDto): HabitLog {
     const log: HabitLog = {
       id: this.nextId++,
@@ -46,7 +35,6 @@ export class HabitLogsService {
     return log;
   }
 
-  // Видалити запис
   remove(id: number): { message: string } {
     const index = this.logs.findIndex(l => l.id === id);
     if (index === -1) throw new NotFoundException(`Лог #${id} не знайдено`);

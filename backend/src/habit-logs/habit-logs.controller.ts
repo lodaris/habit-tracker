@@ -7,17 +7,17 @@ import { UpdateHabitLogDto } from './dto/update-habit-log.dto';
 export class HabitLogsController {
   constructor(private readonly habitLogsService: HabitLogsService) {}
 
-  @Get() // GET /habit-logs
+  @Get()
   findAll() {
     return this.habitLogsService.findAll();
   }
 
-  @Get('habit/:habitId') // GET /habit-logs/habit/1
+  @Get('habit/:habitId')
   findByHabit(@Param('habitId') habitId: string) {
     return this.habitLogsService.findByHabit(+habitId);
   }
 
-  @Post() // POST /habit-logs
+  @Post()
   create(@Body() dto: CreateHabitLogDto) {
     return this.habitLogsService.create(dto);
   }
@@ -27,7 +27,7 @@ export class HabitLogsController {
     return this.habitLogsService.update(+id, dto);
   }
 
-  @Delete(':id') // DELETE /habit-logs/1
+  @Delete(':id')
   remove(@Param('id') id: string) {
     return this.habitLogsService.remove(+id);
   }

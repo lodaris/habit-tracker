@@ -5,7 +5,7 @@
 ## Технологічний стек
 
 - **Backend:** Node.js, Nest.js, TypeScript
-- **Frontend:** React + Vite + TypeScript *(в розробці)*
+- **Frontend:** React + Vite + TypeScript
 - **Зберігання даних:** In-memory
 - **Контроль версій:** Git + GitHub
 

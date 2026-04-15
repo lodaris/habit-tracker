@@ -1,43 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
-
-
-// Описуємо як виглядає об'єкт «звичка»
-export interface Habit {
-  id: number;
-  name: string;
-  description: string;
-  category: string;
-  createdAt: string;
-}
+import { Habit } from '../types';
 
 @Injectable()
 export class HabitsService {
-  // Масив замість БД(вирішив не підключати БД), будемо зберігати в пам'яті
   private habits: Habit[] = [];
   private nextId = 1;
 
-  // Повернути всі звички
   findAll(): Habit[] {
     return this.habits;
   }
 
-  // Знайти одну звичку або кинути помилку 404
   findOne(id: number): Habit {
     const habit = this.habits.find(h => h.id === id);
     if (!habit) throw new NotFoundException(`Звичку #${id} не знайдено`);
     return habit;
   }
 
-    // Оновлюємо тільки ті поля які передали
-    update(id: number, dto: UpdateHabitDto): Habit {
-      const habit = this.findOne(id);
-      Object.assign(habit, dto);
-      return habit;
-    }
-
-  // Створити нову звичку
   create(dto: CreateHabitDto): Habit {
     const habit: Habit = {
       id: this.nextId++,
@@ -50,7 +30,12 @@ export class HabitsService {
     return habit;
   }
 
-  // Видалити звичку
+  update(id: number, dto: UpdateHabitDto): Habit {
+    const habit = this.findOne(id);
+    Object.assign(habit, dto);
+    return habit;
+  }
+
   remove(id: number): { message: string } {
     const index = this.habits.findIndex(h => h.id === id);
     if (index === -1) throw new NotFoundException(`Звичку #${id} не знайдено`);
