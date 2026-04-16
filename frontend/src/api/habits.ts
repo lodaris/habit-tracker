@@ -16,6 +16,12 @@ export const createHabit = (data: { name: string; description?: string; category
 export const deleteHabit = (id: number) =>
   axios.delete(`${API}/habits/${id}`).then(r => r.data);
 
+export const updateHabit = (id: number, data: Partial<Omit<Habit, 'id' | 'createdAt'>>) =>
+  axios.patch<Habit>(`${API}/habits/${id}`, data).then(r => r.data);
+
+export const getStats = (id: number) =>
+  axios.get<{ total: number; completed: number; rate: number }>(`${API}/habits/${id}/stats`).then(r => r.data);
+
 // HabitLogs
 export const getLogsByHabit = (habitId: number) =>
   axios.get<HabitLog[]>(`${API}/habit-logs/habit/${habitId}`).then(r => r.data);
