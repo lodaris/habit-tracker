@@ -17,6 +17,11 @@ export class HabitsController {
     return this.habitsService.getStats(+id);
   }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.habitsService.findOne(+id);
+  }
+
   @Post()
   create(@Body() dto: CreateHabitDto) {
     return this.habitsService.create(dto);
