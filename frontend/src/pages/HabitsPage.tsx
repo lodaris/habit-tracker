@@ -154,7 +154,7 @@ export default function HabitsPage() {
       {/* Модальне вікно редагування */}
       <Dialog open={!!editHabit} onClose={() => setEditHabit(null)} maxWidth="sm" fullWidth>
         <DialogTitle>Редагувати звичку</DialogTitle>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 2 }}>
+        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: '20px !important' }}>
           <TextField
             label="Назва"
             value={editName}

@@ -39,6 +39,17 @@ npm run start:dev
 
 ### Frontend
 
+## Скріншоти
+
+### Головна сторінка
+![alt text](image.png)
+
+### Список звичок
+![alt text](image-1.png)
+
+### Деталі звички
+![alt text](image-2.png)
+
 ```bash
 cd frontend
 npm install
