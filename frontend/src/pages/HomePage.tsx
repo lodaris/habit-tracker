@@ -13,7 +13,7 @@ export default function HomePage() {
       </Typography>
       <Button variant="contained" size="large" onClick={() => navigate('/habits')}
         sx={{ px: 5, py: 1.5, fontSize: '1.1rem' }}>
-        Розпочати →
+        Розпочати -{">"}
       </Button>
     </Box>
   );

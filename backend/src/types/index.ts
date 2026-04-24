@@ -1,15 +1,2 @@
-export interface Habit {
-  id: number;
-  name: string;
-  description: string;
-  category: string;
-  createdAt: string;
-}
-
-export interface HabitLog {
-  id: number;
-  habitId: number;
-  date: string;
-  completed: boolean;
-  note: string;
-}
+export { Habit } from '../habits/entities/habit.entity';
+export { HabitLog } from '../habit-logs/entities/habit-log.entity';

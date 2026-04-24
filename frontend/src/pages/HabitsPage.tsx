@@ -33,6 +33,7 @@ export default function HabitsPage() {
 
   const handleCreate = async () => {
     if (!name.trim()) { setFormError("Назва обов'язкова"); return; }
+    if (name.trim().length < 2) { setFormError("Мінімум 2 символи"); return; }
     try {
       const habit = await createHabit({ name, description, category });
       setHabits(prev => [...prev, habit]);
@@ -83,7 +84,7 @@ export default function HabitsPage() {
             onChange={e => setName(e.target.value)}
             size="small"
             error={!!formError}
-            helperText={formError}
+            helperText={formError || `${name.length}/2 мін.`}
             sx={{ minWidth: 200 }}
           />
           <TextField

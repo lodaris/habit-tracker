@@ -55,7 +55,7 @@ export default function HabitDetailPage() {
   if (error) return <Alert severity="error" sx={{ mt: 4 }}>{error}</Alert>;
   if (!habit) return (
     <Alert severity="warning">
-      Звичку не знайдено. <Button onClick={() => navigate('/habits')}>← Назад</Button>
+      Звичку не знайдено. <Button onClick={() => navigate('/habits')}>{"<-"} Назад</Button>
     </Alert>
   );
 
@@ -79,10 +79,6 @@ export default function HabitDetailPage() {
 
         {stats && (
           <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
-            <Paper sx={{ px: 3, py: 2, textAlign: 'center', bgcolor: '#2a2a2a' }}>
-              <Typography variant="h4" sx={{ fontWeight: 700 }}>{logs.length}</Typography>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>Всього записів</Typography>
-            </Paper>
             <Paper sx={{ px: 3, py: 2, textAlign: 'center', bgcolor: '#2a2a2a' }}>
               <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main' }}>
                 {logs.filter(l => l.completed).length}
